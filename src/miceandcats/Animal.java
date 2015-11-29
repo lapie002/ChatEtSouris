@@ -41,5 +41,5 @@ public abstract class Animal {
         this.casee = casee;
     }
     
-    public abstract void Deplacement (Case c);
+    public abstract void Deplacement ();
 }
