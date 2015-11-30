@@ -23,6 +23,7 @@ public class Souris extends Animal{
          
          switch(myCase.getType())
          {
+            
             // deplacement haut
             case MUR:
             myCase.setPositionC(myCase.getPositionL());
@@ -52,6 +53,7 @@ public class Souris extends Animal{
             // deplacement sur case vide     
             default: 
             myCase.setPositionC(myCase.getPositionC() + 1);
+            
          }
          
     }
