@@ -7,6 +7,6 @@ package miceandcats;
 
 public enum EtatAnimal {
     
-    VIVANT,MORT,ARRIVE ;
+    VIVANT,MORT,ARRIVE;
     
 }

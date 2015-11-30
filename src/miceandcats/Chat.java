@@ -12,8 +12,16 @@ public class Chat extends Animal {
     }
 
     @Override
-    public void Deplacement() {
+    public void Deplacement() 
+    {
         
+         Case myCase = this.getCasee();
+   
+         myCase.setPositionC(myCase.getPositionC() + 1); 
+         
+         myCase.setPositionC(myCase.getPositionC() - 1); 
+         
+         
     }
     
 }

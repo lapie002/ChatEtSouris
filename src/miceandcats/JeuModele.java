@@ -12,7 +12,7 @@ public class JeuModele {
     private Case [] cases;
     
     public JeuModele(){
-        this.nbFleches=4;
+        this.nbFleches=3;
     }
 
     public int getNbFleches() {
