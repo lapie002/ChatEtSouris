@@ -126,11 +126,13 @@ public class Souris extends Animal{
                 }
             break;
               
-            // deplacement sur case vide     
+            // deplacement sur case vide ERREUR VIENS DE LA CAR le reste ne s'excute pas 
+            
             default: 
                 myCase.setPositionL(myCase.getPositionL());     
                 myCase.setPositionC(myCase.getPositionC() + 1);
                 this.setCasee(myCase);
+               
          }
          
     }
