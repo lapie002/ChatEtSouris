@@ -9,6 +9,8 @@ public class Souris extends Animal{
 
     public Souris(int id, Case c) {
         super(id, c);
+        
+        this.setDirection(directions[1]);
     }
 
     @Override
