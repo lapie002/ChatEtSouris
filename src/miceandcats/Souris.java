@@ -120,7 +120,14 @@ public class Souris extends Animal{
         
         Souris s1 = new Souris(1,c4);
         
+        s1.Deplacement();
         
+        System.out.println(s1.getDirection());
+        
+        System.out.println(s1.getCasee().getPositionL()); 
+        System.out.println(s1.getCasee().getPositionC());    
+        
+                
         
         
         
