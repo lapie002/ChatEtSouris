@@ -1,18 +1,24 @@
 package miceandcats;
 
-import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
 
 /**
  *
  * @author Paul et Bruno
  */
 
-public class ControlFleche implements ActionListener{
+public class ControlFleche extends MouseAdapter{
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        
+    private int ligne;
+    private int colonne;
+    
+    public ControlFleche(int i, int j){
+        this.ligne=i;
+        this.colonne=j;
     }
     
+    public void mouseClicked(MouseEvent e){
+        
+    }
 }
