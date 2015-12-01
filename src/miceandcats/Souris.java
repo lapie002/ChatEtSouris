@@ -44,39 +44,63 @@ public class Souris extends Animal{
             
             // deplacement haut
             case MUR:
-            
+                
+            myCase.setPositionL(myCase.getPositionL() + 1);
             myCase.setPositionC(myCase.getPositionC());
-            myCase.setPositionC(myCase.getPositionL() + 1);
             this.setCasee(myCase);
             
             myDirectionIndice = (myDirectionIndice + 1)%4; 
-            
             this.setDirection(myDirectionIndice);
             break; 
              
             // deplacement haut
             case FHAUT:
-            myCase.setPositionC(myCase.getPositionL() - 1);
+            myCase.setPositionL(myCase.getPositionL() - 1);
+            myCase.setPositionC(myCase.getPositionC());
+            this.setCasee(myCase);
+            
+            myDirectionIndice = (myDirectionIndice + 1)%4; 
+            this.setDirection(myDirectionIndice);
             break;
 
             // deplacement droit
             case FDROITE:
+            myCase.setPositionL(myCase.getPositionL());
             myCase.setPositionC(myCase.getPositionC() + 1);
+            this.setCasee(myCase);
+            
+            myDirectionIndice = (myDirectionIndice + 1)%4; 
+            this.setDirection(myDirectionIndice);
             break;
             
             // deplacement bas
             case FBAS:
-            myCase.setPositionC(myCase.getPositionL() + 1);
+            myCase.setPositionL(myCase.getPositionL()+1);    
+            myCase.setPositionC(myCase.getPositionL());
+            this.setCasee(myCase);
+            
+            myDirectionIndice = (myDirectionIndice + 1)%4; 
+            this.setDirection(myDirectionIndice);
             break;
             
             // deplacement droit
             case FGAUCHE:
+            myCase.setPositionL(myCase.getPositionL()); 
             myCase.setPositionC(myCase.getPositionC() - 1);
+            this.setCasee(myCase);
+            
+            myDirectionIndice = (myDirectionIndice + 1)%4; 
+            this.setDirection(myDirectionIndice);
             break;
               
             // deplacement sur case vide     
             default: 
+            myCase.setPositionL(myCase.getPositionL());     
             myCase.setPositionC(myCase.getPositionC() + 1);
+            this.setCasee(myCase);
+                
+            myDirectionIndice = (myDirectionIndice + 1)%4; 
+            this.setDirection(myDirectionIndice);    
             
          }
          
@@ -103,6 +127,27 @@ public class Souris extends Animal{
         
     }
     
+    public boolean getNextCase()
+    {
+        Case myCase = getCasee();
+        
+        String myDirection = this.getDirection();
+        
+        if(myDirection.equals("FHAUT"))
+        {
+        
+        }
+        else if(myDirection.equals("FDROIT"))
+        {}
+        else if(myDirection.equals("FBAS"))
+        {}
+        else 
+        {}
+         
+        
+    
+    }
+    
     
     public static void main(String[] args)
     {
@@ -112,7 +157,7 @@ public class Souris extends Animal{
         Case c2 = new Case(TypeCase.VIDE, 0,2);
         Case c3 = new Case(TypeCase.VIDE, 1,0);
         Case c4 = new Case(TypeCase.VIDE, 1,1);
-        Case c5 = new Case(TypeCase.VIDE, 1,2);
+        Case c5 = new Case(TypeCase.MUR, 1,2);
         Case c6 = new Case(TypeCase.VIDE, 2,0);
         Case c7 = new Case(TypeCase.VIDE, 2,1);
         Case c8 = new Case(TypeCase.VIDE, 2,2);
