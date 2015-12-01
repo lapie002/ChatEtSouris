@@ -11,10 +11,17 @@ public abstract class Animal {
     private int id;
     private Case casee;
     
+    private String direction;
+    protected String[] directions = {"FHAUT","FDROIT", "FBAS", "FGAUCHE"};
+    protected int indiceDeDirection;
+    
     public Animal (int id,Case c){
         this.id=id;
         this.casee=c;
+        
+        
         etat=EtatAnimal.VIVANT;
+        
     }
 
     public EtatAnimal getEtat() {
@@ -40,6 +47,24 @@ public abstract class Animal {
     public void setCasee(Case casee) {
         this.casee = casee;
     }
+
+    public String getDirection() {
+        return direction;
+    }
+
+    public void setDirection(String direction) 
+    {
+        this.direction = direction;
+    }
+    
+    public void setDirection(int d) 
+    {
+        this.direction = directions[d];
+    }
+    
+    
+    
+    
     
     public abstract void Deplacement ();
 }
