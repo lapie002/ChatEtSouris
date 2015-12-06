@@ -9,9 +9,13 @@ import javax.swing.JLabel;
  */
 public class GameFrame extends javax.swing.JFrame {
 
+    //importation des images
     private static final ImageIcon IN = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/In.png");
     private static final ImageIcon OUT = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/OUT.png");
-    private static final ImageIcon FLECHE = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/fleches.png");
+    private static final ImageIcon FLECHEDROITE = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/flecheDroite.png");
+    private static final ImageIcon FLECHEGAUCHE = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/flecheGauche.png");
+    private static final ImageIcon FLECHEHAUT = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/flecheHaut.png");
+    private static final ImageIcon FLECHEBAS = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/flecheBas.png");
     private static final ImageIcon TELIN = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/TELIN.png");
     private static final ImageIcon TELOUT = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/TELOUT.png");
     private static final ImageIcon CHIEN = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/CHIEN1.png");
@@ -20,43 +24,68 @@ public class GameFrame extends javax.swing.JFrame {
     private static final ImageIcon HERBE = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/HERBE.png");
     private static final ImageIcon MUR = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/MUR.png");
    
+    //Creation du jboard
     JLabel[][] jboard;
+    
+    //Import du modele
+    JeuModele modele;
     
     public GameFrame() {
         initComponents();
         
+        //import du modele
+        modele = new JeuModele();
+        
+        //implementation du jboard
         jboard = new JLabel[6][8];
         
-        for(int i=0;i<6;i++){
-            for(int j=0;j<8;j++){
-                jboard[i][j] = new JLabel(HERBE);
-                panelLab.add(jboard[i][j]); 
+        for (int m=0;m<modele.getCases().size();m++){
+            jboard[modele.getCases().get(m).getPositionL()][modele.getCases().get(m).getPositionC()] = new JLabel(HERBE);
+            panelLab.add(jboard[modele.getCases().get(m).getPositionL()][modele.getCases().get(m).getPositionC()]);
+            
+            jboard[modele.getCases().get(m).getPositionL()][modele.getCases().get(m).getPositionC()].addMouseListener(
+                    new ControlFleche(modele.getCases().get(m).getPositionL(),modele.getCases().get(m).getPositionC()));
+        }
+        
+        for (int n=0;n<modele.getCases().size();n++){
+            switch (modele.getCases().get(n).getType()){
+                case IN :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(IN);
+                break;
+                    
+                case OUT :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(OUT);
+                break;
+                    
+                case MUR :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(MUR);
+                break;
                 
-                jboard[i][j].addMouseListener(
-                        new ControlFleche(i,j));
+                case CHAT :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(CHAT);
+                break;
+                    
+                case CHIEN :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(CHIEN);
+                break;
+                    
+                case TELIN :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(TELIN);
+                break;
+                    
+                case TELOUT :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(TELOUT);
+                break;
+                
+                default:
+                    System.out.println("Coucou");
             }
         }
-        jboard[0][0].setIcon(IN);
-        jboard[5][7].setIcon(OUT);
-        jboard[0][3].setIcon(MUR);
-        jboard[1][1].setIcon(MUR);
-        jboard[1][5].setIcon(MUR);
-        jboard[2][3].setIcon(MUR);
-        jboard[2][5].setIcon(MUR);
-        jboard[2][6].setIcon(MUR);
-        jboard[3][2].setIcon(MUR);
-        jboard[4][3].setIcon(MUR);
-        jboard[4][4].setIcon(MUR);
-        jboard[4][6].setIcon(MUR);
-        jboard[5][1].setIcon(MUR);
-        jboard[3][1].setIcon(CHAT);
-        jboard[3][4].setIcon(CHAT);
-        jboard[5][5].setIcon(CHIEN);
-        jboard[5][6].setIcon(CHIEN);
-        jboard[3][6].setIcon(TELIN);
-        jboard[4][0].setIcon(TELOUT);
         this.pack();        
         
+        //affichage des jLabels
+        lblFleches.setText(modele.getNbFleches()+" flèches restantes");
+        lblSouris.setText(modele.getSourisSafe()+" souris sauvées");
     }
 
     /**
@@ -119,13 +148,11 @@ public class GameFrame extends javax.swing.JFrame {
                 .addComponent(btnNew, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
                 .addComponent(btnReset, javax.swing.GroupLayout.PREFERRED_SIZE, 150, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap(88, Short.MAX_VALUE))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelBLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(panelBLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(lblSouris))
+                    .addComponent(lblSouris)
                     .addComponent(lblFleches))
                 .addGap(199, 199, 199))
         );
@@ -217,14 +244,6 @@ public class GameFrame extends javax.swing.JFrame {
     public javax.swing.JButton getBtnReset() {
         return btnReset;
     }
-
-    public void setjLabel1(javax.swing.JLabel jLabel1) {
-        this.lblFleches = jLabel1;
-    }
-
-    public void setjLabel2(javax.swing.JLabel jLabel2) {
-        this.lblSouris = jLabel2;
-    }
     
     public static ImageIcon getIN() {
         return IN;
@@ -232,10 +251,6 @@ public class GameFrame extends javax.swing.JFrame {
 
     public static ImageIcon getOUT() {
         return OUT;
-    }
-
-    public static ImageIcon getFLECHE() {
-        return FLECHE;
     }
 
     public static ImageIcon getTELIN() {
@@ -260,5 +275,78 @@ public class GameFrame extends javax.swing.JFrame {
 
     public static ImageIcon getHERBE() {
         return HERBE;
+    }
+    
+    public static ImageIcon getFLECHEDROITE() {
+        return FLECHEDROITE;
+    }
+
+    public static ImageIcon getFLECHEGAUCHE() {
+        return FLECHEGAUCHE;
+    }
+
+    public static ImageIcon getFLECHEHAUT() {
+        return FLECHEHAUT;
+    }
+
+    public static ImageIcon getFLECHEBAS() {
+        return FLECHEBAS;
+    }
+    
+    public void miseajour(){
+        for (int n=0;n<modele.getCases().size();n++){
+            switch (modele.getCases().get(n).getType()){
+                case IN :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(IN);
+                break;
+                    
+                case OUT :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(OUT);
+                break;
+                    
+                case MUR :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(MUR);
+                break;
+                
+                case CHAT :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(CHAT);
+                break;
+                    
+                case CHIEN :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(CHIEN);
+                break;
+                    
+                case TELIN :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(TELIN);
+                break;
+                    
+                case TELOUT :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(TELOUT);
+                break;
+                    
+                case SOURIS :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(SOURIS);
+                break;
+                
+                case FDROITE :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(FLECHEDROITE);
+                break;
+                    
+                case FGAUCHE :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(FLECHEGAUCHE);
+                break;
+                    
+                case FHAUT :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(FLECHEHAUT);
+                break;
+                
+                case FBAS :
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(FLECHEBAS);
+                break;
+                
+                default:
+                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(HERBE);
+            }
+        }
     }
 }
