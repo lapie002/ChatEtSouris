@@ -23,6 +23,7 @@ public class Souris extends Animal{
         String myDirection = this.getDirection();
         Case myCase = this.getCasee();
         
+        //System.out.println(myDirection);
         
         TypeCase myTypeCase = myCase.getType();
         
@@ -35,23 +36,113 @@ public class Souris extends Animal{
          //myCase.setPositionC(myCase.getPositionC() + 1); 
      
          // switch(myTypeCase) myDirection
-         switch(myDirection)
+//         switch(myDirection)
+//         {
+//            
+//            // deplacement haut du coup ca serait a supprimer 
+//            /*case MUR:
+//                
+//            myCase.setPositionL(myCase.getPositionL() + 1);
+//            myCase.setPositionC(myCase.getPositionC());
+//            this.setCasee(myCase);
+//            
+//            myDirectionIndice = (myDirectionIndice + 1)%4; 
+//            this.setDirection(myDirectionIndice);
+//            break; 
+//            */
+//             
+//            // deplacement haut ca c est le bon exemple 
+//            case "FHAUT":
+//                if(getNextCase(myCase))
+//                {
+//                    myCase.setPositionL(myCase.getPositionL() - 1);
+//                    myCase.setPositionC(myCase.getPositionC());
+//                    this.setCasee(myCase);
+//                }
+//                else
+//                {
+//                    myCase.setPositionL(myCase.getPositionL());
+//                    myCase.setPositionC(myCase.getPositionC());
+//                    this.setCasee(myCase);
+//                    
+//                    myDirectionIndice = (myDirectionIndice + 1)%4;
+//                    //le setDirection() fait myDirection = directions[myDirectionIndice];
+//                    this.setDirection(myDirectionIndice); 
+//                }
+//            break;
+//
+//            // deplacement droit
+//            case "FDROITE":
+//                
+//                if(getNextCase(myCase))
+//                {
+//                    myCase.setPositionL(myCase.getPositionL());
+//                    myCase.setPositionC(myCase.getPositionC() + 1);
+//                    this.setCasee(myCase);
+//                }
+//                else
+//                {
+//                    myCase.setPositionL(myCase.getPositionL());
+//                    myCase.setPositionC(myCase.getPositionC());
+//                    this.setCasee(myCase);
+//
+//                    myDirectionIndice = (myDirectionIndice + 1)%4; 
+//                    this.setDirection(myDirectionIndice);
+//                }
+//            break;
+//            
+//            // deplacement bas
+//            case "FBAS":
+//                if(getNextCase(myCase))
+//                {
+//                    myCase.setPositionL(myCase.getPositionL()+1);    
+//                    myCase.setPositionC(myCase.getPositionL());
+//                    this.setCasee(myCase);
+//                }
+//                else
+//                {
+//                    myCase.setPositionL(myCase.getPositionL());    
+//                    myCase.setPositionC(myCase.getPositionL());
+//                    this.setCasee(myCase);
+//
+//                    myDirectionIndice = (myDirectionIndice + 1)%4; 
+//                    this.setDirection(myDirectionIndice);
+//                }
+//            break;
+//            
+//            // deplacement droit
+//            case "FGAUCHE":
+//                if(getNextCase(myCase))
+//                {
+//                    myCase.setPositionL(myCase.getPositionL()); 
+//                    myCase.setPositionC(myCase.getPositionC() - 1);
+//                    this.setCasee(myCase);
+//                }
+//                else
+//                {
+//                     myCase.setPositionL(myCase.getPositionL()); 
+//                     myCase.setPositionC(myCase.getPositionC());
+//                     this.setCasee(myCase);
+//            
+//                    myDirectionIndice = (myDirectionIndice + 1)%4; 
+//                    this.setDirection(myDirectionIndice);
+//                }
+//            break;
+//              
+//            // deplacement sur case vide ERREUR VIENS DE LA CAR le reste ne s'excute pas 
+//            
+//            default: 
+//                myCase.setPositionL(myCase.getPositionL());     
+//                myCase.setPositionC(myCase.getPositionC() + 1);
+//                this.setCasee(myCase);
+//               
+//         }
+         
+         //System.out.println("hello");
+         //System.out.println(myDirection);
+         
+         if(myDirection=="AHAUT")
          {
-            
-            // deplacement haut du coup ca serait a supprimer 
-            /*case MUR:
-                
-            myCase.setPositionL(myCase.getPositionL() + 1);
-            myCase.setPositionC(myCase.getPositionC());
-            this.setCasee(myCase);
-            
-            myDirectionIndice = (myDirectionIndice + 1)%4; 
-            this.setDirection(myDirectionIndice);
-            break; 
-            */
-             
-            // deplacement haut ca c est le bon exemple 
-            case "FHAUT":
                 if(getNextCase(myCase))
                 {
                     myCase.setPositionL(myCase.getPositionL() - 1);
@@ -65,12 +156,14 @@ public class Souris extends Animal{
                     this.setCasee(myCase);
                     
                     myDirectionIndice = (myDirectionIndice + 1)%4;
-                    this.setDirection(myDirection);
+                    //le setDirection() fait myDirection = directions[myDirectionIndice];
+                    this.setDirection(myDirectionIndice); 
                 }
-            break;
-
-            // deplacement droit
-            case "FDROITE":
+         }
+         else if(myDirection=="ADROITE")
+         {
+             System.out.println(getNextCase(myCase));
+                
                 if(getNextCase(myCase))
                 {
                     myCase.setPositionL(myCase.getPositionL());
@@ -86,10 +179,9 @@ public class Souris extends Animal{
                     myDirectionIndice = (myDirectionIndice + 1)%4; 
                     this.setDirection(myDirectionIndice);
                 }
-            break;
-            
-            // deplacement bas
-            case "FBAS":
+         }
+         else if(myDirection=="ABAS")
+         {
                 if(getNextCase(myCase))
                 {
                     myCase.setPositionL(myCase.getPositionL()+1);    
@@ -105,10 +197,9 @@ public class Souris extends Animal{
                     myDirectionIndice = (myDirectionIndice + 1)%4; 
                     this.setDirection(myDirectionIndice);
                 }
-            break;
-            
-            // deplacement droit
-            case "FGAUCHE":
+         }
+         else if(myDirection=="AGAUCHE")
+         {
                 if(getNextCase(myCase))
                 {
                     myCase.setPositionL(myCase.getPositionL()); 
@@ -124,17 +215,13 @@ public class Souris extends Animal{
                     myDirectionIndice = (myDirectionIndice + 1)%4; 
                     this.setDirection(myDirectionIndice);
                 }
-            break;
-              
-            // deplacement sur case vide ERREUR VIENS DE LA CAR le reste ne s'excute pas 
-            
-            default: 
+         }
+         else
+         {
                 myCase.setPositionL(myCase.getPositionL());     
                 myCase.setPositionC(myCase.getPositionC() + 1);
                 this.setCasee(myCase);
-               
          }
-         
     }
     
     
@@ -161,20 +248,20 @@ public class Souris extends Animal{
     public boolean getNextCase(Case myCurrentCase)
     {
         //Case myCase = getCasee();
-        Case myNextCase = myCurrentCase;
+        Case currentCase = myCurrentCase;
         
-        TypeCase myTypeNextCase = myCurrentCase.getType();
+        TypeCase myTypeCurrentCase = myCurrentCase.getType();
         boolean estUnBonneCase = false;
         
         String myDirection = this.getDirection();
         
-        if(myDirection.equals("FHAUT"))
+        if(myDirection.equals("AHAUT"))
         {
-            myNextCase.setPositionL(myNextCase.getPositionL() - 1);
-            myNextCase.setPositionC(myNextCase.getPositionC());
+            currentCase.setPositionL(currentCase.getPositionL() - 1);
+            currentCase.setPositionC(currentCase.getPositionC());
             //this.setCasee(myNextCase);
             
-            TypeCase myType = myNextCase.getType();
+            TypeCase myType = currentCase.getType();
             
             if(myType.equals(TypeCase.MUR))
             {
@@ -190,13 +277,13 @@ public class Souris extends Animal{
             }
             
         }
-        else if(myDirection.equals("FDROIT"))
+        else if(myDirection.equals("ADROIT"))
         {
-            myNextCase.setPositionL(myNextCase.getPositionL());
-            myNextCase.setPositionC(myNextCase.getPositionC()+1);
+            currentCase.setPositionL(currentCase.getPositionL());
+            currentCase.setPositionC(currentCase.getPositionC()+1);
             //this.setCasee(myNextCase);
             
-            TypeCase myType = myNextCase.getType();
+            TypeCase myType = currentCase.getType();
             
             if(myType.equals(TypeCase.MUR))
             {
@@ -208,13 +295,13 @@ public class Souris extends Animal{
                 estUnBonneCase = true;
             }
         }
-        else if(myDirection.equals("FBAS"))
+        else if(myDirection.equals("ABAS"))
         {
-            myNextCase.setPositionL(myNextCase.getPositionL());
-            myNextCase.setPositionC(myNextCase.getPositionC()+1);
+            currentCase.setPositionL(currentCase.getPositionL());
+            currentCase.setPositionC(currentCase.getPositionC()+1);
             //this.setCasee(myNextCase);
             
-            TypeCase myType = myNextCase.getType();
+            TypeCase myType = currentCase.getType();
             
             if(myType.equals(TypeCase.MUR))
             {
@@ -226,12 +313,12 @@ public class Souris extends Animal{
                 estUnBonneCase = true;
             }
         }
-        else if(myDirection.equals("FBAS"))
+        else if(myDirection.equals("ABAS"))
         {
-            myNextCase.setPositionL(myNextCase.getPositionL());
-            myNextCase.setPositionC(myNextCase.getPositionC()+1);
+            currentCase.setPositionL(currentCase.getPositionL());
+            currentCase.setPositionC(currentCase.getPositionC()+1);
             
-            TypeCase myType = myNextCase.getType();
+            TypeCase myType = currentCase.getType();
             
             if(myType.equals(TypeCase.MUR))
             {
@@ -251,15 +338,15 @@ public class Souris extends Animal{
     public static void main(String[] args)
     {
         
-        Case c0 = new Case(TypeCase.VIDE, 0,0);
-        Case c1 = new Case(TypeCase.VIDE, 0,1);
-        Case c2 = new Case(TypeCase.VIDE, 0,2);
-        Case c3 = new Case(TypeCase.VIDE, 1,0);
-        Case c4 = new Case(TypeCase.VIDE, 1,1);
+        Case c0 = new Case(TypeCase.CHEMIN, 0,0);
+        Case c1 = new Case(TypeCase.CHEMIN, 0,1);
+        Case c2 = new Case(TypeCase.CHEMIN, 0,2);
+        Case c3 = new Case(TypeCase.CHEMIN, 1,0);
+        Case c4 = new Case(TypeCase.CHEMIN, 1,1);
         Case c5 = new Case(TypeCase.MUR, 1,2);
-        Case c6 = new Case(TypeCase.VIDE, 2,0);
-        Case c7 = new Case(TypeCase.VIDE, 2,1);
-        Case c8 = new Case(TypeCase.VIDE, 2,2);
+        Case c6 = new Case(TypeCase.CHEMIN, 2,0);
+        Case c7 = new Case(TypeCase.CHEMIN, 2,1);
+        Case c8 = new Case(TypeCase.CHEMIN, 2,2);
        
         
         Souris s1 = new Souris(1,c4);
