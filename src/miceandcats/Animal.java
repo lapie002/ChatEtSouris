@@ -12,7 +12,7 @@ public abstract class Animal {
     private Case casee;
     
     private String direction;
-    protected String[] directions = {"FHAUT","FDROIT", "FBAS", "FGAUCHE"};
+    protected String[] directions = {"AHAUT","ADROITE", "ABAS", "AGAUCHE"};
     protected int indiceDeDirection;
     
     public Animal (int id,Case c){
@@ -61,10 +61,6 @@ public abstract class Animal {
     {
         this.direction = directions[d];
     }
-    
-    
-    
-    
     
     public abstract void Deplacement ();
 }
