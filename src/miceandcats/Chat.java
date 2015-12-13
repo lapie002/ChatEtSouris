@@ -7,8 +7,8 @@ package miceandcats;
 
 public class Chat extends Animal {
 
-    public Chat(int id, Case c) {
-        super(id, c);
+    public Chat(int id, Case c, JeuModele jm) {
+        super(id, c, jm);
     }
 
     @Override
@@ -20,8 +20,7 @@ public class Chat extends Animal {
          myCase.setPositionC(myCase.getPositionC() + 1); 
          
          myCase.setPositionC(myCase.getPositionC() - 1); 
-         
-         
+
     }
     
 }

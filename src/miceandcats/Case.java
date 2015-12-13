@@ -1,5 +1,7 @@
 package miceandcats;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Paul et Bruno
@@ -7,22 +9,29 @@ package miceandcats;
 
 public class Case {
     
-    private TypeCase type;
+    private TypeCase typeC;
+    private TypePresence typeP;
+    
+    private ArrayList<Animal> myAnimals;
+    
+    
     private int positionL;
     private int positionC;
     
-    public Case (TypeCase t, int pl, int pc){
-        this.type=t;
+    
+    public Case (TypeCase t, int pl, int pc)
+    {
+        this.typeC=t;
         this.positionL=pl;
         this.positionC=pc;
     }
 
     public TypeCase getType() {
-        return type;
+        return typeC;
     }
 
     public void setType(TypeCase type) {
-        this.type = type;
+        this.typeC = type;
     }
 
     public int getPositionL() {
@@ -40,4 +49,31 @@ public class Case {
     public void setPositionC(int positionC) {
         this.positionC = positionC;
     }
+    public String toStringType() {
+        return ""+typeC;
+    }
+
+    public ArrayList<Animal> getMyAnimals() {
+        return myAnimals;
+    }
+
+    public void affecterAnimalCase(Animal a)
+    {
+        this.myAnimals.add(a);        
+    }
+    
+    public void sortirAnimalCase(Animal a)
+    {
+        if(this.myAnimals.contains(a))
+        {
+            this.myAnimals.remove(a);
+        }
+        else
+        {
+            System.out.println("cet animal n est pas present dans cette case!");
+        }
+    }
+ 
+    
+    
 }
