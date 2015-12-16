@@ -24,6 +24,8 @@ public class Case {
         this.typeC=t;
         this.positionL=pl;
         this.positionC=pc;
+        
+        myAnimals = new ArrayList<Animal>();
     }
 
     public TypeCase getType() {
