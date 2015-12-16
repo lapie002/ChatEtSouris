@@ -10,8 +10,8 @@ import java.awt.event.MouseEvent;
 
 public class ControlFleche extends MouseAdapter{
 
-    private int ligne;
-    private int colonne;
+    private final int ligne;
+    private final int colonne;
     private JeuModele modele;
     
     public ControlFleche(int i, int j){
@@ -23,40 +23,34 @@ public class ControlFleche extends MouseAdapter{
     
     @Override
     public void mouseClicked(MouseEvent e){
-        
-        for (int i=0;i<modele.getCases().size();i++){
-            if (modele.getCases().get(i).getPositionL()==this.ligne && modele.getCases().get(i).getPositionC()==this.colonne){
-                switch (modele.getCases().get(i).getType()){
-                    case VIDE :
-                        modele.getCases().get(i).setType(TypeCase.FDROITE);
-                    break;
+                switch(modele.getPlateau()[ligne][colonne].getType()){
+                    case CHEMIN:
+                        modele.getPlateau()[ligne][colonne].setType(TypeCase.FDROITE);
+                        System.out.println(modele.getPlateau()[ligne][colonne].getType());
+                        break;
                         
-                    case FDROITE :
-                        modele.getCases().get(i).setType(TypeCase.FBAS);
-                    break;
-                    
-                    case FBAS :
-                        modele.getCases().get(i).setType(TypeCase.FGAUCHE);
-                    break;
+                    case FDROITE:
+                        modele.getPlateau()[ligne][colonne].setType(TypeCase.FBAS);
+                        System.out.println(modele.getPlateau()[ligne][colonne].getType());
+                        break;
                         
-                    case FGAUCHE :
-                        modele.getCases().get(i).setType(TypeCase.FHAUT);
-                    break;
+                    case FBAS:
+                        modele.getPlateau()[ligne][colonne].setType(TypeCase.FGAUCHE);
+                        System.out.println(modele.getPlateau()[ligne][colonne].getType());
+                        break;
                         
-                    case FHAUT :
-                        modele.getCases().get(i).setType(TypeCase.VIDE);
-                    break;
-                    
+                    case FGAUCHE:
+                        modele.getPlateau()[ligne][colonne].setType(TypeCase.FHAUT);
+                        System.out.println(modele.getPlateau()[ligne][colonne].getType());
+                        break;
+                        
+                    case FHAUT:
+                        modele.getPlateau()[ligne][colonne].setType(TypeCase.CHEMIN);
+                        System.out.println(modele.getPlateau()[ligne][colonne].getType());
+                        break;
+                        
                     default:
-                        System.out.println("Impossible d'effectuer cette action, cette case n'est pas vide.");
+                        System.out.println("Case introuvable");
                 }
-                    
-            }
-            
-            else {
-                System.out.println("Case introuvable");
-            }
-        }
-        
     }
 }

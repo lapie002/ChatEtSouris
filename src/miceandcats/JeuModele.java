@@ -1,7 +1,6 @@
 package miceandcats;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
 /**
  *
@@ -16,8 +15,8 @@ public class JeuModele{
     //private ArrayList <Case> cases;
     
     //private HashMap<String,Case> plateau;
-    private int tailleLigne = 8;
-    private int tailleColonne = 10;
+    private final int tailleLigne = 8;
+    private final int tailleColonne = 10;
     
     private Case[][] plateau;
     

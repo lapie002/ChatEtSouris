@@ -1,5 +1,6 @@
 package miceandcats;
-
+import java.util.Timer;
+import java.util.TimerTask;
 import javax.swing.ImageIcon;
 import javax.swing.JLabel;
 
@@ -7,7 +8,7 @@ import javax.swing.JLabel;
  *
  * @author Paul et Bruno
  */
-public class GameFrame extends javax.swing.JFrame {
+public class GameFrame extends javax.swing.JFrame{
 
     //importation des images
     private static final ImageIcon IN = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/In.png");
@@ -37,55 +38,23 @@ public class GameFrame extends javax.swing.JFrame {
         modele = new JeuModele();
         
         //implementation du jboard
-        jboard = new JLabel[6][8];
+        jboard = new JLabel[8][10];
         
-        for (int m=0;m<modele.getCases().size();m++){
-            jboard[modele.getCases().get(m).getPositionL()][modele.getCases().get(m).getPositionC()] = new JLabel(HERBE);
-            panelLab.add(jboard[modele.getCases().get(m).getPositionL()][modele.getCases().get(m).getPositionC()]);
-            
-            jboard[modele.getCases().get(m).getPositionL()][modele.getCases().get(m).getPositionC()].addMouseListener(
-                    new ControlFleche(modele.getCases().get(m).getPositionL(),modele.getCases().get(m).getPositionC()));
-        }
-        
-        for (int n=0;n<modele.getCases().size();n++){
-            switch (modele.getCases().get(n).getType()){
-                case IN :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(IN);
-                break;
-                    
-                case OUT :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(OUT);
-                break;
-                    
-                case MUR :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(MUR);
-                break;
+        for (int i=0; i<8;i++){
+            for(int j=0;j<10;j++){
+                makeframe(modele.getPlateau()[i][j],(jboard[i][j]=new JLabel()));
                 
-                case CHAT :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(CHAT);
-                break;
-                    
-                case CHIEN :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(CHIEN);
-                break;
-                    
-                case TELIN :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(TELIN);
-                break;
-                    
-                case TELOUT :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(TELOUT);
-                break;
+                panelLab.add(jboard[i][j]);
                 
-                default:
-                    System.out.println("Coucou");
+                jboard[i][j].addMouseListener(
+                        new ControlFleche(i,j));
             }
         }
-        this.pack();        
         
         //affichage des jLabels
         lblFleches.setText(modele.getNbFleches()+" flèches restantes");
         lblSouris.setText(modele.getSourisSafe()+" souris sauvées");
+        
     }
 
     /**
@@ -106,32 +75,32 @@ public class GameFrame extends javax.swing.JFrame {
         lblSouris = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setPreferredSize(new java.awt.Dimension(500, 550));
         setResizable(false);
 
         panelH.setBackground(new java.awt.Color(0, 0, 0));
 
         panelLab.setBackground(new java.awt.Color(0, 0, 0));
         panelLab.setPreferredSize(new java.awt.Dimension(400, 300));
-        panelLab.setLayout(new java.awt.GridLayout(6, 8));
+        panelLab.setLayout(new java.awt.GridLayout(8, 10));
 
         javax.swing.GroupLayout panelHLayout = new javax.swing.GroupLayout(panelH);
         panelH.setLayout(panelHLayout);
         panelHLayout.setHorizontalGroup(
             panelHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(panelHLayout.createSequentialGroup()
-                .addGap(50, 50, 50)
-                .addComponent(panelLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(50, Short.MAX_VALUE))
+            .addComponent(panelLab, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         panelHLayout.setVerticalGroup(
             panelHLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, panelHLayout.createSequentialGroup()
-                .addContainerGap(51, Short.MAX_VALUE)
-                .addComponent(panelLab, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(49, 49, 49))
+            .addComponent(panelLab, javax.swing.GroupLayout.DEFAULT_SIZE, 360, Short.MAX_VALUE)
         );
 
         btnNew.setText("Commencer la partie");
+        btnNew.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnNewActionPerformed(evt);
+            }
+        });
 
         btnReset.setText("Réinitialiser partie");
 
@@ -159,15 +128,14 @@ public class GameFrame extends javax.swing.JFrame {
         panelBLayout.setVerticalGroup(
             panelBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(panelBLayout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(panelBLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(btnNew)
                     .addComponent(btnReset))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(lblFleches)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(lblSouris)
-                .addContainerGap(16, Short.MAX_VALUE))
+                .addComponent(lblSouris))
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
@@ -181,12 +149,30 @@ public class GameFrame extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(panelH, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(panelB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(18, 18, 18)
+                .addComponent(panelB, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(88, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void btnNewActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnNewActionPerformed
+        TimerTask tt = new TimerTask() {
+            
+            @Override
+            public void run() {
+                System.out.println("MAJ");
+                for(int k=0;k<modele.getAnimaux().size();k++){
+                    modele.getAnimaux().get(k).Deplacement();
+                    System.out.println("deplacement");
+                }
+                miseajour();
+            }
+        };
+        Timer timer = new Timer();
+        timer.schedule(tt,0,1500);
+    }//GEN-LAST:event_btnNewActionPerformed
 
     /**
      * @param args the command line arguments
@@ -217,6 +203,7 @@ public class GameFrame extends javax.swing.JFrame {
 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
+            @Override
             public void run() {
                 new GameFrame().setVisible(true);
             }
@@ -293,59 +280,73 @@ public class GameFrame extends javax.swing.JFrame {
         return FLECHEBAS;
     }
     
+    public static ImageIcon getMUR() {
+        return MUR;
+    }
+    
+    public void makeframe(Case c, JLabel j){
+        switch (c.getType()){
+            case MUR:
+                j.setIcon(getMUR());
+            break;
+                
+            case CHEMIN:
+                j.setIcon(getHERBE());
+            break;
+                
+            case IN:
+                j.setIcon(getIN());
+            break;
+                
+            case OUT:
+                j.setIcon(getOUT());
+            break;
+                
+            case TELIN:
+                j.setIcon(getTELIN());
+            break;
+                
+            case TELOUT:
+                j.setIcon(getTELOUT());
+            break;
+            
+            case FBAS:
+                j.setIcon(getFLECHEBAS());
+            break;
+                
+            case FHAUT:
+                j.setIcon(getFLECHEHAUT());
+            break;
+                
+            case FGAUCHE:
+                j.setIcon(getFLECHEGAUCHE());
+            break;
+            
+            case FDROITE:
+                j.setIcon(getFLECHEDROITE());
+            break;
+                
+            case CHAT:
+                j.setIcon(getCHAT());
+            break;
+                
+            case CHIEN:
+                j.setIcon(getCHIEN());
+            break;
+                
+            case SOURIS:
+                j.setIcon(getSOURIS());
+            break;
+                
+            default:
+                System.out.println("huhuhu");
+        }
+    }
+    
     public void miseajour(){
-        for (int n=0;n<modele.getCases().size();n++){
-            switch (modele.getCases().get(n).getType()){
-                case IN :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(IN);
-                break;
-                    
-                case OUT :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(OUT);
-                break;
-                    
-                case MUR :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(MUR);
-                break;
-                
-                case CHAT :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(CHAT);
-                break;
-                    
-                case CHIEN :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(CHIEN);
-                break;
-                    
-                case TELIN :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(TELIN);
-                break;
-                    
-                case TELOUT :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(TELOUT);
-                break;
-                    
-                case SOURIS :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(SOURIS);
-                break;
-                
-                case FDROITE :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(FLECHEDROITE);
-                break;
-                    
-                case FGAUCHE :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(FLECHEGAUCHE);
-                break;
-                    
-                case FHAUT :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(FLECHEHAUT);
-                break;
-                
-                case FBAS :
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(FLECHEBAS);
-                break;
-                
-                default:
-                    jboard[modele.getCases().get(n).getPositionL()][modele.getCases().get(n).getPositionC()].setIcon(HERBE);
+        for (int i=0; i<8;i++){
+            for(int j=0;j<10;j++){
+                makeframe(modele.getPlateau()[i][j],(jboard[i][j]=new JLabel()));
             }
         }
     }
