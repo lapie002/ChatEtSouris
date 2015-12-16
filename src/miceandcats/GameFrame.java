@@ -8,7 +8,7 @@ import javax.swing.JLabel;
  *
  * @author Paul et Bruno
  */
-public class GameFrame extends javax.swing.JFrame{
+public class GameFrame extends javax.swing.JFrame implements Observateur{
 
     //importation des images
     private static final ImageIcon IN = new ImageIcon("C:/Users/Paul/Documents/NetBeansProjects/MiceAndCats/src/miceandcats/img/In.png");
@@ -47,13 +47,15 @@ public class GameFrame extends javax.swing.JFrame{
                 panelLab.add(jboard[i][j]);
                 
                 jboard[i][j].addMouseListener(
-                        new ControlFleche(i,j));
+                        new ControlFleche(i,j,this.modele));
             }
         }
         
         //affichage des jLabels
         lblFleches.setText(modele.getNbFleches()+" flèches restantes");
         lblSouris.setText(modele.getSourisSafe()+" souris sauvées");
+        
+        modele.addObservateur(this);
         
     }
 
@@ -337,17 +339,21 @@ public class GameFrame extends javax.swing.JFrame{
             case SOURIS:
                 j.setIcon(getSOURIS());
             break;
-                
-            default:
-                System.out.println("huhuhu");
         }
     }
     
     public void miseajour(){
         for (int i=0; i<8;i++){
             for(int j=0;j<10;j++){
-                makeframe(modele.getPlateau()[i][j],(jboard[i][j]=new JLabel()));
+                makeframe(modele.getPlateau()[i][j],(jboard[i][j]));
             }
         }
+        lblFleches.setText(modele.getNbFleches()+" flèches restantes");
+        lblSouris.setText(modele.getSourisSafe()+" souris sauvées");
+    }
+
+    @Override
+    public void avertir() {
+        miseajour();
     }
 }

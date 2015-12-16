@@ -20,7 +20,18 @@ public class Chien extends Animal {
         int colonne = randomj();
         
         if (this.jeu.getPlateau()[ligne][colonne].getType()==TypeCase.CHEMIN){
+            this.getCasee().setType(TypeCase.CHEMIN);
+            this.setCasee(this.jeu.getPlateau()[ligne][colonne]);
+            this.jeu.getPlateau()[ligne][colonne].setType(TypeCase.CHIEN);
+        }
+        else if (this.jeu.getPlateau()[ligne][colonne].getType()==TypeCase.CHAT){
             
+        }
+        else if(this.jeu.getPlateau()[ligne][colonne].getType()==TypeCase.SOURIS){
+            
+        }
+        else {
+            Deplacement();
         }
     }
     

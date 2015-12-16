@@ -1,6 +1,7 @@
 package miceandcats;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -17,6 +18,8 @@ public class JeuModele{
     //private HashMap<String,Case> plateau;
     private final int tailleLigne = 8;
     private final int tailleColonne = 10;
+    
+    private List<Observateur> observateurs;
     
     private Case[][] plateau;
     
@@ -39,6 +42,7 @@ public class JeuModele{
        
        
         initialiserModele();
+        observateurs = new ArrayList<>();
     }
 
     public int getNbFleches() {
@@ -47,6 +51,7 @@ public class JeuModele{
 
     public void setNbFleches(int nbFleches) {
         this.nbFleches = nbFleches;
+        avertirObservateurs();
     }
 
     public ArrayList<Animal> getAnimaux() {
@@ -174,6 +179,16 @@ public class JeuModele{
        }
     }
     
+    public void placerChien(){
+        this.plateau[6][7]=new Case(TypeCase.CHIEN,6,7);
+        Chien c1 = new Chien (1,this.plateau[6][7],this);
+        animaux.add(c1);
+        
+        this.plateau[6][6]=new Case(TypeCase.CHIEN,6,7);
+        Chien c2 = new Chien (1,this.plateau[6][6],this);
+        animaux.add(c2);
+    }
+    
     
     private void initialiserModele()
     {
@@ -182,89 +197,19 @@ public class JeuModele{
         placerInTelAndOut();
         placerLesMurs();
         placerLesChemins();
+        placerChien();
     }
     
-//    public static void main(String[] args)
-//    {
-//        JeuModele test = new JeuModele();
-//        
-//        for(int i=0;i<8;i++)
-//        {
-//            for(int j=0;j<10;j++)
-//            {
-//                System.out.println(test.plateau[i][j].toStringType() + " ");
-//            }
-//        }
-        
-        
-        
-       
-//        if(test.plateau[0][0]==null)
-//        {
-//            System.out.println("ok");
-//        }
-//        else{System.out.println("pas ok");}
-//     
-    
-    
-    
-    
-    
-    /*
-    private void initialiserModele(){
-        
-        //Implementation de l'arrayList de cases, avec par defaut le type Vide
-        for(int i=0;i<6;i++){
-            for(int j=0;j<8;j++){
-                Case c = new Case (TypeCase.VIDE,i,j);
-                cases.add(c);
-            }
-        }
-        
-        //Creation de la case IN
-        cases.get(0).setType(TypeCase.IN);
-        
-        //Creation de la case OUT
-        cases.get(47).setType(TypeCase.OUT);
-        
-        //Creation des murs
-        cases.get(3).setType(TypeCase.MUR);
-        cases.get(9).setType(TypeCase.MUR);
-        cases.get(13).setType(TypeCase.MUR);
-        cases.get(19).setType(TypeCase.MUR);
-        cases.get(21).setType(TypeCase.MUR);
-        cases.get(22).setType(TypeCase.MUR);
-        cases.get(26).setType(TypeCase.MUR);
-        cases.get(35).setType(TypeCase.MUR);
-        cases.get(36).setType(TypeCase.MUR);
-        cases.get(38).setType(TypeCase.MUR);
-        cases.get(41).setType(TypeCase.MUR);
-        
-        //Creation des chatons et ajout a l'arrayList des animaux
-        cases.get(25).setType(TypeCase.CHAT);
-        Chat chat1 = new Chat (1,cases.get(25));
-        animaux.add(chat1);
-        
-        cases.get(28).setType(TypeCase.CHAT);
-        Chat chat2 = new Chat (2,cases.get(28));
-        animaux.add(chat2);
-        
-        //Creation des chiens et ajout a l'arrayList des animaux
-        cases.get(45).setType(TypeCase.CHIEN);
-        Chien chien1 = new Chien (1,cases.get(45));
-        animaux.add(chien1);
-        
-        cases.get(46).setType(TypeCase.CHIEN);
-        Chien chien2 = new Chien (2,cases.get(46));
-        
-        //Creation des teleporteurs
-        cases.get(30).setType(TypeCase.TELIN);
-        cases.get(32).setType(TypeCase.TELOUT);
-        
-        //Creation des souris, par defaut elles se situent sur la case IN
-        Souris souris1 = new Souris (1,cases.get(0));
-        Souris souris2 = new Souris (2,cases.get(0));
-        Souris souris3 = new Souris (3,cases.get(0));
+    public void addObservateur(Observateur obs) {
+        observateurs.add(obs);
     }
-    */
+
+    public void removeObservateur(Observateur obs) {
+        observateurs.remove(obs);
+    }
+
+    public void avertirObservateurs() {
+        for(Observateur obs : observateurs)
+            obs.avertir();
+    }
 }
