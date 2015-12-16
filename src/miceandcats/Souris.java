@@ -95,6 +95,45 @@ public static void main(String[] args)
         System.out.println(s1.getDirection());
         System.out.println(s1.getCasee().getPositionL()); 
         System.out.println(s1.getCasee().getPositionC());
+        
+        
+        s1.Deplacement();
+        //position et direction apres deplacement
+        System.out.println(s1.getDirection());
+        System.out.println(s1.getCasee().getPositionL()); 
+        System.out.println(s1.getCasee().getPositionC());
+        
+        
+                s1.Deplacement();
+        //position et direction apres deplacement
+        System.out.println(s1.getDirection());
+        System.out.println(s1.getCasee().getPositionL()); 
+        System.out.println(s1.getCasee().getPositionC());
+        
+        
+                s1.Deplacement();
+        //position et direction apres deplacement
+        System.out.println(s1.getDirection());
+        System.out.println(s1.getCasee().getPositionL()); 
+        System.out.println(s1.getCasee().getPositionC());
+        
+                s1.Deplacement();
+        //position et direction apres deplacement
+        System.out.println(s1.getDirection());
+        System.out.println(s1.getCasee().getPositionL()); 
+        System.out.println(s1.getCasee().getPositionC());
+        
+                s1.Deplacement();
+        //position et direction apres deplacement
+        System.out.println(s1.getDirection());
+        System.out.println(s1.getCasee().getPositionL()); 
+        System.out.println(s1.getCasee().getPositionC());
+        
+                s1.Deplacement();
+        //position et direction apres deplacement
+        System.out.println(s1.getDirection());
+        System.out.println(s1.getCasee().getPositionL()); 
+        System.out.println(s1.getCasee().getPositionC());
     }
     
 }
