@@ -12,6 +12,8 @@ public abstract class Animal {
     private int id;
     private Case casee;
     
+     
+    
     private String direction;
     protected String[] directions = {"AHAUT","ADROITE", "ABAS", "AGAUCHE"};
     protected int indiceDeDirection;
@@ -51,6 +53,8 @@ public abstract class Animal {
         this.casee = casee;
     }
 
+    
+
     public String getDirection(){
         return direction;
     }
@@ -64,12 +68,16 @@ public abstract class Animal {
     {
         this.direction = directions[d];
     }
-    
+    // type original de la case precedente 
     public TypeCase getNextCase()
+    {
+        return(this.jeu.getPlateau()[this.ligneSuivante()][this.colonneSuivante()].getTypeCprecedent());
+    }
+    // methode utiliser pour la recuperation du type de la case precedente 
+    public TypeCase getNextCasePrec()
     {
         return(this.jeu.getPlateau()[this.ligneSuivante()][this.colonneSuivante()].getType());
     }
-    
     
     public int ligneSuivante()
     {

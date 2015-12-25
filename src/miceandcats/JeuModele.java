@@ -183,12 +183,35 @@ public class JeuModele{
         this.plateau[6][7]=new Case(TypeCase.CHIEN,6,7);
         Chien c1 = new Chien (1,this.plateau[6][7],this);
         animaux.add(c1);
+        // insertion de l'animal dans l'ArrayList de la case (liste de presence des animaux)
+        this.plateau[6][7].affecterAnimalCase(c1);
         
         this.plateau[6][6]=new Case(TypeCase.CHIEN,6,7);
-        Chien c2 = new Chien (1,this.plateau[6][6],this);
+        Chien c2 = new Chien (2,this.plateau[6][6],this);
         animaux.add(c2);
+        // insertion de l'animal dans l'ArrayList de la case (liste de presence des animaux)
+        this.plateau[6][6].affecterAnimalCase(c2);
     }
     
+    /*placer souris marche */
+    public void placerSouris(){
+        this.plateau[1][1]=new Case(TypeCase.SOURIS,1,1);
+        Souris s1 = new Souris (7,this.plateau[1][1],this);
+        //s1.setDirection(2);
+        animaux.add(s1);
+    }
+    
+        /*placer souris marche */
+    public void placerChat(){
+        this.plateau[4][4]=new Case(TypeCase.CHAT,4,4);
+        Chat cat1 = new Chat (4,this.plateau[4][4],this,1);
+        animaux.add(cat1);
+        
+        
+        this.plateau[4][2]=new Case(TypeCase.CHAT,4,2);
+        Chat cat2 = new Chat (3,this.plateau[4][2],this,2);
+        animaux.add(cat2);
+    }
     
     private void initialiserModele()
     {
@@ -198,6 +221,10 @@ public class JeuModele{
         placerLesMurs();
         placerLesChemins();
         placerChien();
+        /* on appelle plaer souris*/
+        placerSouris();
+        /* on appelle plaer souris*/
+        placerChat();
     }
     
     public void addObservateur(Observateur obs) {

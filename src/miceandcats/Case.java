@@ -11,6 +11,7 @@ public class Case {
     
     private TypeCase typeC;
     private TypePresence typeP;
+    private TypeCase typeCprecedent;
     
     private ArrayList<Animal> myAnimals;
     
@@ -22,6 +23,7 @@ public class Case {
     public Case (TypeCase t, int pl, int pc)
     {
         this.typeC=t;
+        this.typeCprecedent=t;
         this.positionL=pl;
         this.positionC=pc;
         
@@ -34,6 +36,14 @@ public class Case {
 
     public void setType(TypeCase type) {
         this.typeC = type;
+    }
+
+    public TypeCase getTypeCprecedent() {
+        return typeCprecedent;
+    }
+
+    public void setTypeCprecedent(TypeCase typeCprecedent) {
+        this.typeCprecedent = typeCprecedent;
     }
 
     public int getPositionL() {
