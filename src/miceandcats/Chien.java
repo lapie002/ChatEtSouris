@@ -29,11 +29,35 @@ public class Chien extends Animal {
         }
         else if (this.jeu.getPlateau()[ligne][colonne].getType()==TypeCase.CHAT)
         {
+            this.getCasee().setType(TypeCase.CHEMIN);
+            this.getCasee().sortirAnimalCase(this);
+            this.setCasee(this.jeu.getPlateau()[ligne][colonne]);
             
+            for(Animal animal : this.jeu.getPlateau()[ligne][colonne].getMyAnimals())
+            {
+                if(animal.getId()==3 || animal.getId()==4)
+                {
+                    animal.setEtat(EtatAnimal.MORT);
+                }
+            }
+            this.setEtat(EtatAnimal.MORT);
+            this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this); 
         }
         else if(this.jeu.getPlateau()[ligne][colonne].getType()==TypeCase.SOURIS)
         {
+            this.getCasee().setType(TypeCase.CHEMIN);
+            this.getCasee().sortirAnimalCase(this);
+            this.setCasee(this.jeu.getPlateau()[ligne][colonne]);
             
+            for(Animal animal : this.jeu.getPlateau()[ligne][colonne].getMyAnimals())
+            {
+                if(animal.getId()==5 || animal.getId()==6 || animal.getId()==7)
+                {
+                    animal.setEtat(EtatAnimal.MORT);
+                }
+            }
+            this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].setType(TypeCase.CHIEN);
+            this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this); 
         }
         else {
             Deplacement();
