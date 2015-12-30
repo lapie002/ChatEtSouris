@@ -15,7 +15,9 @@ public class Souris extends Animal{
         super(id, c, jm);
         this.setDirectiontoString(directions[1]);
         indiceDeDirection = 1;
-        this.typeCasePrecedente=TypeCase.IN;
+        // soit une case de type IN soit de type chemin 
+        this.typeCasePrecedente=TypeCase.CHEMIN;
+//        this.typeCasePrecedente=TypeCase.IN;
         this.getCasee().affecterAnimalCase(this);
         
     }
@@ -84,57 +86,28 @@ public class Souris extends Animal{
                 
             }
             
-            
-            
-            
-            /*rajouterai un cas avec la fleche*/
+       
+            /*deplacement avec un cas fleche*/
             else if(this.getNextCase() == TypeCase.FHAUT)
             {
-                //on retire l'animal de la case 
-                this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].sortirAnimalCase(this);
-                //this.setTypeCasePrecedente(this.getNextCase());
-                this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].setType(this.getTypeCasePrecedente());
-                this.setTypeCasePrecedente(this.getNextCasePrec());
-
-
-                this.setCasee(this.jeu.getPlateau()[this.ligneSuivante()][this.colonneSuivante()]);
-                
-                if(this.getCasee().getType() == TypeCase.CHAT || this.getCasee().getType() == TypeCase.CHIEN)
-                {
-                    this.setEtat(EtatAnimal.MORT);
-                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this);
-                }
-                else
-                {   
-                    myDirectionIndice = 0;
-                    this.setDirection(myDirectionIndice);
-                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].setType(TypeCase.SOURIS);       
-                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this);
-                }
+                deplacementSourisViaFleche(myDirection, myCase, 0);
             }
             else if(this.getNextCase() == TypeCase.FDROITE)
             {
-                this.indiceDeDirection = 1;
-                this.setDirection(indiceDeDirection);
-                
+                deplacementSourisViaFleche(myDirection, myCase, 1);
             }
             else if(this.getNextCase() == TypeCase.FBAS)
             {
-                this.indiceDeDirection = 2;
-                this.setDirection(indiceDeDirection);
-                
+                deplacementSourisViaFleche(myDirection, myCase, 2);
             }
             else if(this.getNextCase() == TypeCase.FGAUCHE)
             {
-                this.indiceDeDirection = 3;
-                this.setDirection(indiceDeDirection);
-                
+                deplacementSourisViaFleche(myDirection, myCase, 3);
             }
             /*fin fleche*/
             
             
-            
-            
+       
             else
             {
                 //on retire l'animal de la case 
@@ -163,7 +136,6 @@ public class Souris extends Animal{
         }
         else
         {
-            
              myDirectionIndice = (myDirectionIndice + 1)%4;
              this.setDirection(myDirectionIndice);
              this.Deplacement();
@@ -189,6 +161,32 @@ public class Souris extends Animal{
         
         return indice;
         
+    }
+    
+    public void deplacementSourisViaFleche(String myDirection, Case myCase, int i)
+    {
+                //on retire l'animal de la case 
+                this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].sortirAnimalCase(this);
+                //this.setTypeCasePrecedente(this.getNextCase());
+                this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].setType(this.getTypeCasePrecedente());
+                this.setTypeCasePrecedente(this.getNextCasePrec());
+
+
+                this.setCasee(this.jeu.getPlateau()[this.ligneSuivante()][this.colonneSuivante()]);
+                
+                if(this.getCasee().getType() == TypeCase.CHAT || this.getCasee().getType() == TypeCase.CHIEN)
+                {
+                    this.setEtat(EtatAnimal.MORT);
+                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this);
+                }
+                else
+                {   
+                    int myDirectionIndice = i;
+                    this.setDirection(myDirectionIndice);
+                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].setType(TypeCase.SOURIS);       
+                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this);
+                }
+    
     }
     
 public static void main(String[] args)

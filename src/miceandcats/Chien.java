@@ -42,6 +42,7 @@ public class Chien extends Animal {
             }
             this.setEtat(EtatAnimal.MORT);
             this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this); 
+            this.jeu.getPlateau()[ligne][colonne].setType(TypeCase.CHEMIN);
         }
         else if(this.jeu.getPlateau()[ligne][colonne].getType()==TypeCase.SOURIS)
         {

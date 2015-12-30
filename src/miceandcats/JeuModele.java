@@ -184,33 +184,66 @@ public class JeuModele{
         Chien c1 = new Chien (1,this.plateau[6][7],this);
         animaux.add(c1);
         // insertion de l'animal dans l'ArrayList de la case (liste de presence des animaux)
-        this.plateau[6][7].affecterAnimalCase(c1);
+//        this.plateau[6][7].affecterAnimalCase(c1);
         
         this.plateau[6][6]=new Case(TypeCase.CHIEN,6,7);
         Chien c2 = new Chien (2,this.plateau[6][6],this);
         animaux.add(c2);
         // insertion de l'animal dans l'ArrayList de la case (liste de presence des animaux)
-        this.plateau[6][6].affecterAnimalCase(c2);
+//        this.plateau[6][6].affecterAnimalCase(c2);
     }
     
     /*placer souris marche */
     public void placerSouris(){
         this.plateau[1][1]=new Case(TypeCase.SOURIS,1,1);
-        Souris s1 = new Souris (7,this.plateau[1][1],this);
+        Souris s1 = new Souris (5,this.plateau[1][1],this);
         //s1.setDirection(2);
         animaux.add(s1);
+//        this.plateau[1][1].affecterAnimalCase(s1);
+        
+        this.plateau[1][8]=new Case(TypeCase.SOURIS,1,8);
+        Souris s2 = new Souris (6,this.plateau[1][8],this);
+        //s1.setDirection(2);
+        animaux.add(s2);
+//        this.plateau[1][8].affecterAnimalCase(s2);
+        
+        
+        this.plateau[3][3]=new Case(TypeCase.SOURIS,3,3);
+        Souris s3 = new Souris (7,this.plateau[3][3],this);
+        //s1.setDirection(2);
+        animaux.add(s3);
+//        this.plateau[3][3].affecterAnimalCase(s3);
+        
+        
+        /*test pour les fleces*/
+//        this.plateau[2][3]=new Case(TypeCase.FBAS,2,3);
+        this.plateau[2][1]=new Case(TypeCase.FDROITE,2,1);
+//        this.plateau[2][3]=new Case(TypeCase.FGAUCHE,2,3);
+//        this.plateau[2][3]=new Case(TypeCase.FHAUT,2,3);
     }
     
         /*placer souris marche */
     public void placerChat(){
-        this.plateau[4][4]=new Case(TypeCase.CHAT,4,4);
-        Chat cat1 = new Chat (4,this.plateau[4][4],this,1);
+        
+        // memo sur le parametre de direction 1 = Droite/Gauche et 2 = haut/bas 
+        this.plateau[6][3]=new Case(TypeCase.CHAT,6,3);
+        Chat cat1 = new Chat (4,this.plateau[6][3],this,1);
         animaux.add(cat1);
         
+
         
         this.plateau[4][2]=new Case(TypeCase.CHAT,4,2);
         Chat cat2 = new Chat (3,this.plateau[4][2],this,2);
         animaux.add(cat2);
+     
+          /*des chat pour des tests*/ 
+//        this.plateau[4][1]=new Case(TypeCase.CHAT,4,1);
+//        Chat cat1 = new Chat (4,this.plateau[4][1],this,2);
+//        animaux.add(cat1);
+        
+//        this.plateau[4][8]=new Case(TypeCase.CHAT,4,8);
+//        Chat cat2 = new Chat (4,this.plateau[4][8],this,2);
+//        animaux.add(cat2);
     }
     
     private void initialiserModele()

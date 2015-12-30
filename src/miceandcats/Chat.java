@@ -41,24 +41,42 @@ public class Chat extends Animal {
         // retourne l'indice du tableau de direction
         int myDirectionIndice = retournIndiceDirection(myDirection);
         
-
-         
+        //if(this.getNextCase() != TypeCase.MUR && this.getNextCase() != TypeCase.OUT && this.getNextCase() != TypeCase.TELIN && this.getNextCase() != TypeCase.TELOUT)
         if(this.getNextCase() != TypeCase.MUR)
         {
                 //on retire l'animal de la case 
                 this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].sortirAnimalCase(this);
-                //this.setTypeCasePrecedente(this.getNextCase());
-                //this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].setType(this.getTypeCasePrecedente());
-                //this.setTypeCasePrecedente(this.getNextCasePrec());
-                this.getCasee().setType(TypeCase.CHEMIN);
                 
-
+                this.getCasee().setType(TypeCase.CHEMIN);
                 this.setCasee(this.jeu.getPlateau()[this.ligneSuivante()][this.colonneSuivante()]);
                 
                 if(this.getCasee().getType() == TypeCase.CHIEN)
                 {
                     this.setEtat(EtatAnimal.MORT);
                     this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this);
+                    
+                    for(Animal animal : this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].getMyAnimals())
+                    {
+                        if(animal.getId()==1 || animal.getId()==2)
+                        {
+                            animal.setEtat(EtatAnimal.MORT);
+                        }
+                    }
+                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].setType(TypeCase.CHEMIN);
+                    
+                }
+                if(this.getCasee().getType() == TypeCase.SOURIS)
+                {
+                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this);
+                    
+                    for(Animal animal : this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].getMyAnimals())
+                    {
+                        if(animal.getId()==1 || animal.getId()==2)
+                        {
+                            animal.setEtat(EtatAnimal.MORT);
+                        }
+                    }
+                    this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].setType(TypeCase.CHAT);
                 }
                 else
                 {
@@ -68,7 +86,6 @@ public class Chat extends Animal {
         }
         else
         {
-            
              myDirectionIndice = (myDirectionIndice + 2)%4;
              this.setDirection(myDirectionIndice);
              this.Deplacement();
