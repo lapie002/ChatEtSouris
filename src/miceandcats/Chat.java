@@ -52,20 +52,20 @@ public class Chat extends Animal {
                 
                 if(this.getCasee().getType() == TypeCase.CHIEN)
                 {
-                    this.setEtat(EtatAnimal.MORT);
                     this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this);
                     
-                    for(Animal animal : this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].getMyAnimals())
+                    for(Animal animal : this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].getMyAnimals())
                     {
                         if(animal.getId()==1 || animal.getId()==2)
                         {
                             animal.setEtat(EtatAnimal.MORT);
                         }
                     }
+                    this.setEtat(EtatAnimal.MORT);
                     this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].setType(TypeCase.CHEMIN);
                     
                 }
-                if(this.getCasee().getType() == TypeCase.SOURIS)
+                else if(this.getCasee().getType() == TypeCase.SOURIS)
                 {
                     this.jeu.getPlateau()[this.getCasee().getPositionL()][this.getCasee().getPositionC()].affecterAnimalCase(this);
                     

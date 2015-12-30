@@ -186,7 +186,7 @@ public class JeuModele{
         // insertion de l'animal dans l'ArrayList de la case (liste de presence des animaux)
 //        this.plateau[6][7].affecterAnimalCase(c1);
         
-        this.plateau[6][6]=new Case(TypeCase.CHIEN,6,7);
+        this.plateau[6][6]=new Case(TypeCase.CHIEN,6,6);
         Chien c2 = new Chien (2,this.plateau[6][6],this);
         animaux.add(c2);
         // insertion de l'animal dans l'ArrayList de la case (liste de presence des animaux)
@@ -217,7 +217,7 @@ public class JeuModele{
         
         /*test pour les fleces*/
 //        this.plateau[2][3]=new Case(TypeCase.FBAS,2,3);
-        this.plateau[2][1]=new Case(TypeCase.FDROITE,2,1);
+//        this.plateau[2][1]=new Case(TypeCase.FDROITE,2,1);
 //        this.plateau[2][3]=new Case(TypeCase.FGAUCHE,2,3);
 //        this.plateau[2][3]=new Case(TypeCase.FHAUT,2,3);
     }

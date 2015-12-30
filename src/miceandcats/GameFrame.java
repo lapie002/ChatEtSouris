@@ -1,4 +1,5 @@
 package miceandcats;
+import java.awt.event.ActionEvent;
 import java.util.Timer;
 import java.util.TimerTask;
 import javax.swing.ImageIcon;
@@ -25,7 +26,7 @@ public class GameFrame extends javax.swing.JFrame implements Observateur{
     private static final ImageIcon HERBE = new ImageIcon("C:/Users/Bruno/Documents/NetBeansProjects/ChatEtSouris/src/miceandcats/img/HERBE.png");
     private static final ImageIcon MUR = new ImageIcon("C:/Users/Bruno/Documents/NetBeansProjects/ChatEtSouris/src/miceandcats/img/MUR.png");
    
-    //Creation du jboard
+ //Creation du jboard
     JLabel[][] jboard;
     
     //Import du modele
@@ -105,6 +106,11 @@ public class GameFrame extends javax.swing.JFrame implements Observateur{
         });
 
         btnReset.setText("Réinitialiser partie");
+        btnReset.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btnResetActionPerformed(evt);
+            }
+        });
 
         lblFleches.setText("flèches restantes");
 
@@ -171,16 +177,16 @@ public class GameFrame extends javax.swing.JFrame implements Observateur{
                     if(a.getEtat()==EtatAnimal.VIVANT)
                     {
                         
-                        // pour deplacer les animaux selon leur id utile our les tests || a.getId()==4
+                        // pour deplacer les animaux selon leur id utile our les tests
                         
-                        if(a.getId()==3 || a.getId()==4)
-                        {
-                            a.Deplacement();
-                            System.out.println("deplacement");
-                        }
-                        
+//                        if(a.getId()==3 || a.getId()==4)
+//                        {
 //                        a.Deplacement();
 //                        System.out.println("deplacement");
+//                        }
+                        
+                        a.Deplacement();
+                        System.out.println("deplacement");
                         
                         
                       
@@ -191,7 +197,13 @@ public class GameFrame extends javax.swing.JFrame implements Observateur{
         };
         Timer timer = new Timer();
         timer.schedule(tt,0,1500);
-    }                                      
+    }        
+    
+    private void btnResetActionPerformed(ActionEvent evt) {
+        GameFrame gf = new GameFrame();
+        gf.setVisible(true);
+        this.dispose();
+    }
 
     /**
      * @param args the command line arguments

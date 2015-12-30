@@ -26,7 +26,8 @@ public class ControlFleche extends MouseAdapter{
                 switch(modele.getPlateau()[ligne][colonne].getType()){
                     case CHEMIN:
                         if (modele.getNbFleches()>0){
-                            modele.getPlateau()[ligne][colonne].setType(TypeCase.FDROITE);
+                            
+                            modele.getPlateau()[ligne][colonne] = new Case (TypeCase.FDROITE,ligne,colonne);
                             System.out.println(modele.getPlateau()[ligne][colonne].getType());
                             this.modele.setNbFleches(this.modele.getNbFleches() -1);
                         }
@@ -36,25 +37,25 @@ public class ControlFleche extends MouseAdapter{
                         break;
                         
                     case FDROITE:
-                        modele.getPlateau()[ligne][colonne].setType(TypeCase.FBAS);
+                        modele.getPlateau()[ligne][colonne] = new Case (TypeCase.FBAS,ligne,colonne);
                         System.out.println(modele.getPlateau()[ligne][colonne].getType());
                         this.modele.setNbFleches(this.modele.getNbFleches());
                         break;
                         
                     case FBAS:
-                        modele.getPlateau()[ligne][colonne].setType(TypeCase.FGAUCHE);
+                        modele.getPlateau()[ligne][colonne] = new Case (TypeCase.FGAUCHE,ligne,colonne);
                         System.out.println(modele.getPlateau()[ligne][colonne].getType());
                         this.modele.setNbFleches(this.modele.getNbFleches());
                         break;
                         
                     case FGAUCHE:
-                        modele.getPlateau()[ligne][colonne].setType(TypeCase.FHAUT);
+                        modele.getPlateau()[ligne][colonne] = new Case (TypeCase.FHAUT,ligne,colonne);
                         System.out.println(modele.getPlateau()[ligne][colonne].getType());
                         this.modele.setNbFleches(this.modele.getNbFleches());
                         break;
                         
                     case FHAUT:
-                        modele.getPlateau()[ligne][colonne].setType(TypeCase.CHEMIN);
+                        modele.getPlateau()[ligne][colonne] = new Case (TypeCase.CHEMIN,ligne,colonne);
                         System.out.println(modele.getPlateau()[ligne][colonne].getType());
                         this.modele.setNbFleches(this.modele.getNbFleches() +1);
                         break;
