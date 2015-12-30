@@ -40,9 +40,12 @@ public class Chat extends Animal {
         
         // retourne l'indice du tableau de direction
         int myDirectionIndice = retournIndiceDirection(myDirection);
+//        Choix des conditions pour le chat en fonction de la case ou il peut et doit aller:        
+//        if(this.getNextCase() == TypeCase.CHEMIN || this.getNextCase() == TypeCase.CHAT this.getNextCase() == TypeCase.CHIEN || this.getNextCase() == TypeCase.SOURIS)
+//        if(this.getNextCase() != TypeCase.MUR)
+//        if(this.getNextCase() != TypeCase.MUR && this.getNextCase() != TypeCase.OUT && this.getNextCase() != TypeCase.TELIN && this.getNextCase() != TypeCase.TELOUT)
         
-        //if(this.getNextCase() != TypeCase.MUR && this.getNextCase() != TypeCase.OUT && this.getNextCase() != TypeCase.TELIN && this.getNextCase() != TypeCase.TELOUT)
-        if(this.getNextCase() != TypeCase.MUR)
+        if(this.getNextCase() == TypeCase.CHEMIN || this.getNextCase() == TypeCase.CHAT || this.getNextCase() == TypeCase.CHIEN || this.getNextCase() == TypeCase.SOURIS)
         {
                 //on retire l'animal de la case 
                 this.jeu.getPlateau()[myCase.getPositionL()][myCase.getPositionC()].sortirAnimalCase(this);
