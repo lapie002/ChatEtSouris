@@ -11,6 +11,8 @@ public abstract class Animal {
     private EtatAnimal etat;
     private int id;
     private Case casee;
+    private String nom;
+    private TypeCase typeCasePrecedente;
     
      
     
@@ -23,6 +25,7 @@ public abstract class Animal {
         this.jeu = jm;
         this.id=id;
         this.casee=c;
+        this.typeCasePrecedente=TypeCase.CHEMIN;
         
         
         etat=EtatAnimal.VIVANT;
@@ -51,6 +54,22 @@ public abstract class Animal {
 
     public void setCasee(Case casee){
         this.casee = casee;
+    }
+
+    public String getNom() {
+        return nom;
+    }
+
+    public void setNom(String nom) {
+        this.nom = nom;
+    }
+
+    public TypeCase getTypeCasePrecedente() {
+        return typeCasePrecedente;
+    }
+
+    public void setTypeCasePrecedente(TypeCase typeCasePrecedente) {
+        this.typeCasePrecedente = typeCasePrecedente;
     }
 
     

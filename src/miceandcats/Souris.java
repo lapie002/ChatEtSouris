@@ -7,7 +7,7 @@ package miceandcats;
 
 public class Souris extends Animal{
 
-    private TypeCase typeCasePrecedente; 
+    
      
     public Souris(int id, Case c, JeuModele jm) {
         
@@ -16,19 +16,13 @@ public class Souris extends Animal{
         this.setDirectiontoString(directions[1]);
         indiceDeDirection = 1;
         // soit une case de type IN soit de type chemin 
-        this.typeCasePrecedente=TypeCase.CHEMIN;
+        
 //        this.typeCasePrecedente=TypeCase.IN;
         this.getCasee().affecterAnimalCase(this);
+        this.setNom("souris");
         
     }
 
-    public TypeCase getTypeCasePrecedente() {
-        return typeCasePrecedente;
-    }
-
-    public void setTypeCasePrecedente(TypeCase typeCasePrecedente) {
-        this.typeCasePrecedente = typeCasePrecedente;
-    }
     
 
     @Override

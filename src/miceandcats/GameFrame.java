@@ -187,7 +187,7 @@ public class GameFrame extends javax.swing.JFrame implements Observateur{
                         
                         a.Deplacement();
                         System.out.println("deplacement");
-                        
+                        System.out.println(a.getNom());
                         
                       
                     }
